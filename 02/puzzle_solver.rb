@@ -21,6 +21,17 @@ class PuzzleSolver
     @game_ids_below_ceiling.map(&:to_i).sum
   end
 
+  def solve_2
+    sum_of_powers = []
+    File.read(@filename).each_line do |game_row|
+      row = game_row.split(':')
+      game = clean_game_row(row.last)
+      cube_counts = max_cubes_for_game(game)
+      sum_of_powers << cube_counts['red'] * cube_counts['green'] * cube_counts['blue']
+    end
+    sum_of_powers.map(&:to_i).sum
+  end
+
   def below_ceiling?(cubes)
     cubes['red'] <= @cube_ceiling['red'] &&
       cubes['blue'] <= @cube_ceiling['blue'] &&
@@ -60,3 +71,4 @@ pp got == expectation
 
 puzzle_solver = PuzzleSolver.new('./puzzle_input.txt', cube_ceiling)
 puts puzzle_solver.solve
+puts puzzle_solver.solve_2
