@@ -33,7 +33,7 @@ class PuzzleSolver
   end
 
   def below_ceiling?(cubes)
-    cubes['red'] <= @cube_ceiling['red'] &&
+    rubes['red'] <= @cube_ceiling['red'] &&
       cubes['blue'] <= @cube_ceiling['blue'] &&
       cubes['green'] <= @cube_ceiling['green']
   end
